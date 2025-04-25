@@ -1,3 +1,9 @@
+// Cotação das moedas (COTAÇÃO DO DIA 21/04/2025)
+const USD = 5.68 
+const EUR = 6.45
+const GBP = 7.56
+
+
 // Obtendo os elementos do formulário
 const form = document.querySelector("form")
 const amount = document.getElementById("amount")
@@ -13,5 +19,20 @@ amount.addEventListener("input", () => {
 form.onsubmit = (event) => { // poderia usar tamboem o addEventListener
   event.preventDefault() // para desativa o comportamento padrão
 
-  console.log(currency.value)
+  switch (currency.value){
+    case "USD":
+      convertCurrent(amount.value, USD, "US$")
+      break
+    case "EUR":
+      convertCurrent(amount.value, EUR, "€")
+      break
+    case "GBP":
+      convertCurrent(amount.value, GBP, "£")
+      break
+  }
+}
+
+// Função para converter a moeda
+function convertCurrent(amount, price, symbol) {
+  console.log(amount, price, symbol)
 }
