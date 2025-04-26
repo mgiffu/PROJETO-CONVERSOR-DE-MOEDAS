@@ -43,9 +43,11 @@ function convertCurrent(amount, price, symbol) {
 
     // Calcula o total
     let total = amount * price
+    // Formatar o valor total
+    total = formatCurrencyBRL(total).replace("R$", "")
 
     // Exibe o resultado total
-    result.textContent = total
+    result.textContent = `${(total)} Reais`
 
     // Aplica a classe que exibe o footer para mostar o resultado, exibindo ela na tela
     footer.classList.add("show-result") // adiciona a classe "show-result" no footer, esse classe esta presente no CSS.
