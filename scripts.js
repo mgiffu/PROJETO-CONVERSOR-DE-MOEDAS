@@ -10,6 +10,7 @@ const amount = document.getElementById("amount")
 const currency = document.getElementById("currency")
 const footer = document.querySelector("footer")
 const description = document.getElementById("description")
+const result = document.getElementById("result")
 
 //Manipulando o input amount para receber somente números
 amount.addEventListener("input", () => {
@@ -37,7 +38,14 @@ form.onsubmit = (event) => { // poderia usar tamboem o addEventListener
 // Função para converter a moeda
 function convertCurrent(amount, price, symbol) {
   try {
-    description.textContent = `${symbol} 1 = ${price}`
+    // Exibindo a cotação da moeda selecionada
+    description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`
+
+    // Calcula o total
+    let total = amount * price
+
+    // Exibe o resultado total
+    result.textContent = total
 
     // Aplica a classe que exibe o footer para mostar o resultado, exibindo ela na tela
     footer.classList.add("show-result") // adiciona a classe "show-result" no footer, esse classe esta presente no CSS.
@@ -46,4 +54,11 @@ function convertCurrent(amount, price, symbol) {
     footer.classList.remove("show-result") // remove a classe "show-result no footer"
     alert("Não foi possível converter. Tente novamente!")
   }
+}
+
+function formatCurrencyBRL(value) {
+  return Number(value).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  })
 }
